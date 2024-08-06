@@ -1,0 +1,50 @@
+POSIX - Thread
+pthread_t tid;
+pthread_attr_t patr;
+pthread_mutex_t pmutex;
+pthread_mutexattr_t pmutexattr;
+pthread_cond_t;
+pthread_cond_attr_t;
+
+pthread_create() -> create threads
+pthread_join() -> wait calling process to wait till thread finishes job.
+pthread_cancel() -> Try to cancel ongoing thread if it is in cancellable stage
+pthread_kill() -> Singalling SIGKILL to thread. 
+pthread_detach() -> Calling process indecating that it is not going to wait for pthread to finish job. 
+pthread_exit() -> exiting thread with return status/info. pthread_join() collect status.
+
+ 
+pthread_attr_init() -> Initialize pthread_attr_t variable
+pthread_attr_destroy() -> Destroy pthread_attr_t variable
+pthread_attr_setstack() -> Set attribute for pthread stack
+pthread_attr_getstack() -> Get pthread stack attribute info
+pthread_attr_setstacksize() -> Set pthread stack size in attribute
+pthread_attr_getstacksize() -> Get pthread stack size in attribute
+
+
+
+pthread_mutex_init() -> Initialize pthread_mutex_t variable
+pthread_mutex_destroy() -> Destroy pthread_mutex_t variable
+pthread_mutex_lock() -> Lock mutex. Blocking call. Wait till release.
+pthread_mutex_trylock() -> Try to accquire mutex lock. Non-blocking call. Return immediately.
+pthread_mutex_unlock() -> Unlock mutex. Non-blocking call.
+ 
+
+pthread_mutexattr_init() -> Initialize pthread_mutexattr_t 
+pthread_mutexattr_destroy() -> Destroy pthread_mutexattr_t
+pthread_mutexattr_gettype() -> Get mutex type from attribute
+pthread_mutexattr_settype() -> Set mutex type in attribute ( PTHREAD_MUTEX_NORMAL, PTHREAD_MUTEX_ERRORCHECK, PTHREAD_MUTEX_RECURSIVE )
+
+
+pthread_cond_init() -> Initialize pthread_cond_t attribute
+pthread_cond_destroy() -> Initialize pthread_cond_t attribute
+pthread_cond_wait() -> Wait till signal from pthread_cond_broadcast/pthread_cond_signal
+pthread_cond_timewait() -> Wait till signal or timeout
+pthread_cond_broadcast() -> Unlock all blocked thread
+pthread_cond_signal() -> Unlock at least one blocked thread
+
+
+pthread_condattr_init() -> Initialize condition attribute
+pthread_condattr_destroy() -> Destroy condition attribute
+pthread_condattr_setpshared() -> Set condition variable to PTHREAD_PROCESS_SHARED or PTHREAD_PROCESS_PRIVATE
+pthread_condattr_getpshared() -> Get pshared attribute of condition variable 
