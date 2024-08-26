@@ -1,0 +1,29 @@
+system V semaphore
+---------------------------------------------------------------
+
+key_t ftok (const char *pathname, int proj_id); -> sysV key generation using file. proj_id must have last 8bit nonzero.
+
+int semget(key_t key, int number_of_semaphore, int semflg); -> create semaphore ( IPC_CREAT , IPC_EXCL )
+int semctl(int semid, int number_of_semaphore, int op, ...);
+int semop(int semid, struct sembuf *sops, size_t nsops);
+int semtimedop(int semid, struct sembuf *sops, size_t nsops, const struct timespec *_Nullable timeout);
+ 
+ https://www.softprayog.in/programming/system-v-semaphores
+ https://turing.une.edu.au/~cosc330/lectures/lecture_12/lecture_12.html
+
+POSIX Semaphore
+ sem_t ;
+ 
+ 
+ sem_init() ; -> initialize an unnamed semaphore
+ sem_open(); -> initialize and open a named semaphore
+ sem_close();  
+ sem_destroy(); 
+ 
+ sem_post(); 
+ sem_get(); 
+ sem_wait();
+ sem_trywait();
+ sem_timedwait();
+ 
+ https://www.softprayog.in/programming/posix-semaphores
