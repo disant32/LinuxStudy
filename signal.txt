@@ -1,0 +1,81 @@
+Signals in Linux : software interrupts
+----------------------------------------------------
+SIGHUP - Terminal closed - Hangup 
+SIGKILL - Kill process signal 9 - Abnormal exit
+SIGABRT - Abort signal - abort() system call.
+SIGCHLD - Child process has ended.
+SIGTERM - Inform process to quit?
+SIGALM - alarm() system call 
+SIGUSR1, SIGUSR2 - User defined signal
+
+https://faculty.cs.niu.edu/~hutchins/csci480/signals.htm
+
+
+When signal occure, every process need to handle it. There are 3 cases.
+
+1) Ignore it ( Not all signal can be ignored)
+2) Catch and handle -> catch signal and talk custom action
+3) Default action -> Every signal has default action.
+
+
+
+fork() -> child inherits a copy of the signal dispositions of its parent
+exec() -> NO inherits. Resetting to default action.
+
+
+signal(SIGINT, sig_handler) -> catch SIGINT signal and call sig_handler function.
+
+
+struct sigaction {
+	void (*sa_handler)(int); /* Address of handler */
+	sigset_t sa_mask; /* Signals blocked during handler
+	invocation */
+	int sa_flags; /* Flags controlling handler invocation */
+	void (*sa_restorer)(void); /* Not for application use */
+};
+sigaction() -> change action of signal  ( any signal except SIGKILL and SIGSTOP)
+	int sigaction(int S, const struct sigaction * Act, struct sigaction * OldAct)
+	 
+	NOTE: If we have multiple threads, the disposition of a signal is the same for all of the threads.
+	ex.
+	
+		static void my_sig_handler(int signo)
+		{
+		 got_signal = 1;
+		}
+		.
+		.
+		struct sigaction sa;
+
+		memset(&sa, 0, sizeof(struct sigaction));
+		sa.sa_handler = &my_sig_handler;
+		if (sigaction(SIGINT, &sa, NULL) == -1)
+		{
+			perror("sigaction");
+			return EXIT_FAILURE;
+		}
+
+
+raise() -> send signal to calling process
+pause() -> suspend execution until any signal
+kill() -> send signal to process 
+pthread_kill() -> send signal to specific thread
+pthread_sigmask() -> Each thread in a process has its own signal mask which lists the signals that thread is currently blocking.
+
+
+
+sigset_t -> Multiple signals are represented using a data structure called a signal set, provided by the system data type sigset_t.
+
+int sigemptyset(sigset_t *set);
+int sigfillset(sigset_t *set);
+int sigaddset(sigset_t *set, int signum);
+int sigdelset(sigset_t *set, int signum);
+int sigismember(const sigset_t *set, int signum);
+
+int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);
+	Internally it is Union Existing Set + New SET.
+	
+	Retrieve existing signal mask ->
+		sigprocmask(0, NULL, sigset_t *oldset);
+		
+int sigpending(sigset_t *set); -> get pending signal		
