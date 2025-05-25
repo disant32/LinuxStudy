@@ -1,0 +1,69 @@
+Linux System Call list
+Here is a list of the most important Linux system calls that are commonly asked about in interviews for Linux system programmer roles:
+
+### 1. Process Management
+
+* fork() – Create a new process
+* exec() family (execve, execl, execp, etc.) – Execute a new program
+* wait(), waitpid() – Wait for process termination
+* exit() – Terminate a process
+* getpid(), getppid() – Get process IDs
+* kill() – Send a signal to a process
+* clone() – Low-level process/thread creation (used in multithreading)
+
+### 2. File I/O and Filesystem
+
+* open(), close() – Open/close file descriptors
+* read(), write() – Basic file input/output
+* lseek() – Change file offset
+* stat(), fstat(), lstat() – Get file status
+* mkdir(), rmdir(), unlink(), rename() – Filesystem operations
+* access(), chmod(), chown() – File permissions and ownership
+* dup(), dup2(), dup3() – Duplicate file descriptors
+* fsync(), fdatasync() – Synchronize file data to disk
+
+### 3. Memory Management
+
+* mmap(), munmap() – Memory-mapped file I/O
+* brk(), sbrk() – Legacy heap memory management
+* mprotect() – Set memory protections
+* madvise() – Advise kernel about memory usage
+
+### 4. Interprocess Communication (IPC)
+
+* pipe(), pipe2() – Unnamed pipes
+* socket(), bind(), listen(), accept(), connect() – Socket programming
+* send(), recv(), sendto(), recvfrom() – Socket data transfer
+* shmget(), shmat(), shmdt(), shmctl() – System V shared memory
+* semget(), semop(), semctl() – Semaphores
+* msgget(), msgsnd(), msgrcv(), msgctl() – Message queues
+* eventfd(), signalfd(), timerfd() – File descriptor-based IPC
+
+### 5. Signals
+
+* signal(), sigaction() – Define signal handling
+* sigprocmask(), sigpending() – Signal mask and pending signals
+* alarm(), pause(), sleep() – Signal-based timing
+
+### 6. Threading & Synchronization (via clone or pthread APIs)
+
+* clone() – Thread creation (low-level)
+* futex() – Fast userspace locking (used by pthreads internally)
+
+### 7. File Descriptor and Polling
+
+* select(), poll(), epoll\_create(), epoll\_wait() – Multiplexing I/O
+* ioctl() – Device-specific input/output operations
+
+### 8. Time and Timers
+
+* time(), gettimeofday(), clock\_gettime() – System time
+* nanosleep(), usleep() – Sleep functions
+
+### 9. Namespace and Cgroups (Advanced Topics)
+
+* unshare(), setns() – Namespace operations
+* mount(), umount() – Mounting filesystems
+* chroot() – Change root directory
+
+These system calls form the backbone of systems programming in Linux. For interviews, focus on how and when to use them, edge cases, performance implications, and examples of their usage in real applications.
