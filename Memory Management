@@ -1,0 +1,88 @@
+Memory Management
+=====================
+In Linux, memory management is a complex and critical subsystem of the kernel. It handles allocation, protection, and optimization of memory resources. Below are the most important **components of memory management** in Linux:
+
+---
+
+### 1. **Virtual Memory**
+
+* Provides each process with its own address space.
+* Allows more memory to be used than physically available using swap space.
+* Implemented using **paging**.
+
+---
+
+### 2. **Page Tables**
+
+* Data structures used to translate **virtual addresses to physical addresses**.
+* Managed per process.
+* Includes multi-level page tables (on x86: PGD, PUD, PMD, PTE).
+
+---
+
+### 3. **MMU (Memory Management Unit)**
+
+* Hardware component, but tightly integrated with the kernel's memory management.
+* Translates virtual addresses using page tables.
+
+---
+
+### 4. **Slab/SLUB Allocator**
+
+* Used for **kernel memory allocation** (i.e., memory used by kernel structures).
+* Efficient object reuse and caching.
+
+---
+
+### 5. **Buddy Allocator**
+
+* Used for **physical memory allocation** in blocks (for example, for page allocation).
+* Works by splitting memory into power-of-two blocks.
+
+---
+
+### 6. **vm\_area\_struct**
+
+* Data structure in the kernel that tracks **memory regions** of a process (like stack, heap, libraries).
+* Linked list or tree of regions in a process.
+
+---
+
+### 7. **Swap Space**
+
+* Disk space used when physical memory (RAM) is full.
+* Swapping helps in handling memory overcommitment.
+
+---
+
+### 8. **Memory Zones**
+
+* Linux divides physical memory into zones:
+
+  * **ZONE\_DMA**: for devices that need low memory addresses
+  * **ZONE\_NORMAL**: for most memory allocations
+  * **ZONE\_HIGHMEM** (older 32-bit systems): for high memory not directly mapped
+
+---
+
+### 9. **Page Cache**
+
+* Caches file data to reduce disk I/O.
+* Includes buffers, inode caches, etc.
+
+---
+
+### 10. **OOM Killer (Out of Memory Killer)**
+
+* Invoked when the system runs out of memory.
+* Terminates processes to free memory based on heuristic scores.
+
+---
+
+### 11. **Cgroups & Memory Limits**
+
+* Control Groups allow limiting, monitoring, and isolating memory usage of process groups.
+
+---
+
+Let me know if you'd like a diagram or to explore one of these components in detail (like how `vm_area_struct` works in a process).
