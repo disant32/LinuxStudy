@@ -48,3 +48,28 @@ pthread_condattr_init() -> Initialize condition attribute
 pthread_condattr_destroy() -> Destroy condition attribute
 pthread_condattr_setpshared() -> Set condition variable to PTHREAD_PROCESS_SHARED or PTHREAD_PROCESS_PRIVATE
 pthread_condattr_getpshared() -> Get pshared attribute of condition variable 
+
+==========================================================================================================================================
+pthread_setcancelstate()
+    state: One of the following:
+      PTHREAD_CANCEL_ENABLE: (default) Thread can be cancelled. 
+      PTHREAD_CANCEL_DISABLE: Thread ignores cancellation requests.
+    oldstate: If not NULL, stores the previous cancel state.
+
+pthread_setcanceltype()
+  type: Defines when the cancellation can occur:
+    PTHREAD_CANCEL_DEFERRED: (default) Cancellation occurs only at specific points called cancellation points (e.g., pthread_testcancel(), sleep(), read(), etc.).
+    PTHREAD_CANCEL_ASYNCHRONOUS: Cancellation happens immediately, which can be unsafe.
+  oldtype: If not NULL, stores the previous cancel type.
+
+pthread_testcancel()
+pthread_cleanup_push()
+pthread_cleanup_pop()
+
+Thread cancellation allows one thread to request the termination of another thread using pthread_cancel(thread_id);. However, the target thread can choose how and when to respond to this request.
+
+That’s where pthread_setcancelstate() and pthread_setcanceltype() come in.
+
+
+
+==========================================================================================================================================
