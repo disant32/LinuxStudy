@@ -1,0 +1,5 @@
+ftok() -> create token
+shmget() -> get sharedmem obj
+shmat() -> attach memory
+shmdt() -> detach memory
+shmctl() -> control permission and operation on sharedmemory
