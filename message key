@@ -1,0 +1,6 @@
+msgget()
+msgctl()
+msgsnd()
+msgrcv()
+
+
