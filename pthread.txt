@@ -20,7 +20,8 @@ pthread_attr_setstack() -> Set attribute for pthread stack
 pthread_attr_getstack() -> Get pthread stack attribute info
 pthread_attr_setstacksize() -> Set pthread stack size in attribute
 pthread_attr_getstacksize() -> Get pthread stack size in attribute
-
+pthread_attr_setdetachstate() -> Set pthread detachable state
+pthread_attr_getdetachstate() -> Get pthread detachable state
 
 
 pthread_mutex_init() -> Initialize pthread_mutex_t variable
