@@ -1,0 +1,4 @@
+socket()        |  socket()
+bind()          |  bind()
+listen()        |  connect()
+send()/recv()   |  
