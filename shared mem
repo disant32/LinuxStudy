@@ -3,3 +3,14 @@ shmget() -> get sharedmem obj
 shmat() -> attach memory
 shmdt() -> detach memory
 shmctl() -> control permission and operation on sharedmemory
+
+POSIX
+------------------------------------------
+shm_init()
+shm_open()
+ftruncate()
+mmap()
+munmap()
+shm_close()
+shm_unlink()
+------------------------------------------
